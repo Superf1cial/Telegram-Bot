@@ -21,8 +21,8 @@ print('Login succesful')
 
 
 
-bot = telegram.Bot(token="304300939:AAGOQCXUuA4laeKEZkJuwppQaE-kosTGzxQ")
-updater = Updater(token = '304300939:AAGOQCXUuA4laeKEZkJuwppQaE-kosTGzxQ')
+bot = telegram.Bot(token=)
+updater = Updater(token=)
 dispatcher = updater.dispatcher
 
 def parse_reddit(SUBREDDIT):
