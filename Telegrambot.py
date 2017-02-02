@@ -27,8 +27,8 @@ print('Login succesful')
 
 
 
-bot = telegram.Bot(token="Your Api token")
-updater = Updater(token ="Your Api token")
+bot = telegram.Bot(token="304300939:AAGOQCXUuA4laeKEZkJuwppQaE-kosTGzxQ")
+updater = Updater(token = '304300939:AAGOQCXUuA4laeKEZkJuwppQaE-kosTGzxQ')
 dispatcher = updater.dispatcher
 
 def parse_reddit(SUBREDDIT):
@@ -37,7 +37,7 @@ def parse_reddit(SUBREDDIT):
     s = r.get_subreddit(SUBREDDIT)
     URL_LIST = []
     title_list = []
-    for submission in s.get_top(limit=50):
+    for submission in s.get_top(limit=100):
         URL = submission.url
         title = submission.title
         title_list.append(title)
@@ -71,17 +71,22 @@ def Set_Subreddit(bot, update, args):
     return SUBREDDIT, URL_LIST
 
 def start(bot, update):
-    bot.sendMessage(chat_id=update.message.chat_id, text="To start set a subreddit. /setsubreddit name. After that use /getimage for a picture or gif")
+    bot.sendMessage(chat_id=update.message.chat_id, text='''To start set a subreddit. /setsubreddit name. After that use /getimage for a picture or gif
+
+Und Niklas ist die größte Pflaume vong der ganzn Welt!''')
 
 def getjoke(bot, update):
     title = []
     text = []
     s = r.get_subreddit("jokes")
-    for submission in s.get_top(limit=50):
+    for submission in s.get_top(limit=100):
+        if submission.link_flair_text == "Long":
+            print("FOUND A LONG FLAIR")
+            continue
         title.append(submission.title)
         text.append(submission.selftext)
         reddit_dict = dict(zip(title, text))
-    headline, story = random.choice(list(reddit_dict.items()))
+        headline, story = random.choice(list(reddit_dict.items()))
     bot.sendMessage(chat_id=update.message.chat_id, text=headline)
     bot.sendMessage(chat_id=update.message.chat_id, text=story)
 
